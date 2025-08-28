@@ -98,3 +98,4 @@ C:\Users\SIJALLI\OneDrive - Capgemini\Desktop\MicroservicesApp\FrontEnd\Mango.We
 C:\Users\SIJALLI\OneDrive - Capgemini\Desktop\MicroservicesApp\FrontEnd\Mango.Web\obj\Debug\net9.0\compressed\9v2p2a81xe-8dxhut2ajg.gz
 C:\Users\SIJALLI\OneDrive - Capgemini\Desktop\MicroservicesApp\FrontEnd\Mango.Web\obj\Debug\net9.0\compressed\d3wn908int-224s4t1d66.gz
 C:\Users\SIJALLI\OneDrive - Capgemini\Desktop\MicroservicesApp\FrontEnd\Mango.Web\obj\Debug\net9.0\compressed\g9508pcht6-224s4t1d66.gz
+C:\Users\SIJALLI\OneDrive - Capgemini\Desktop\MicroservicesApp\FrontEnd\Mango.Web\obj\Debug\net9.0\Mango.Web.sourcelink.json

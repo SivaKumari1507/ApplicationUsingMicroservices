@@ -3,7 +3,7 @@
   "profiles": {
     "http": {
       "commandName": "Project",
-      "launchUrl": "swagger ",
+      "launchUrl": "swagger",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5014",
@@ -13,7 +13,7 @@
     },
     "https": {
       "commandName": "Project",
-      "launchUrl": "swagger ",
+      "launchUrl": "swagger",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7131;http://localhost:5014",
