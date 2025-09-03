@@ -1,8 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.CouponAPI", "Mango.Services.CouponAPI\Mango.Services.CouponAPI.csproj", "{C59A8848-D9F9-9A5A-A648-CCD42CCC9D74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.AuthAPI", "Mango.Services.AuthAPI\Mango.Services.AuthAPI.csproj", "{83DEA11F-9E44-4E75-9663-34D3F15B7B34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,6 +16,10 @@ Global
 		{C59A8848-D9F9-9A5A-A648-CCD42CCC9D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C59A8848-D9F9-9A5A-A648-CCD42CCC9D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C59A8848-D9F9-9A5A-A648-CCD42CCC9D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83DEA11F-9E44-4E75-9663-34D3F15B7B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83DEA11F-9E44-4E75-9663-34D3F15B7B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83DEA11F-9E44-4E75-9663-34D3F15B7B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83DEA11F-9E44-4E75-9663-34D3F15B7B34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
