@@ -1,7 +1,7 @@
+using Mango.Services.AuthAPI.Data;
 using Mango.Services.AuthAPI.Models;
 using Mango.Services.AuthAPI.Models.Dto;
 using Mango.Services.AuthAPI.Services.IService;
-using Mango.Services.CouponAPI.Data;
 using Microsoft.AspNetCore.Identity;
 
 namespace Mango.Services.AuthAPI.Services

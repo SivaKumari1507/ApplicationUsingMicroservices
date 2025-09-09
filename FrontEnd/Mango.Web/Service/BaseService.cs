@@ -20,7 +20,7 @@ namespace Mango.Web.Service
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<ResponseDto?> SendAsync<T>(RequestDto requestDto)
+        public async Task<ResponseDto?> SendAsync(RequestDto requestDto)
         {
             try
             {

@@ -5,7 +5,7 @@
 namespace Mango.Services.AuthAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class NameColumn : Migration
+    public partial class ApplicationUsersColumn1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Mango.Services.AuthAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class IdentityTables : Migration
+    public partial class ApplicationUsersColumn : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
