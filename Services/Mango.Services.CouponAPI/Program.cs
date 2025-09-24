@@ -21,6 +21,17 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
 
+// Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy => policy
+            .WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+    );
+});
+
 
 builder.Services.AddSwaggerGen(option =>
 {
@@ -46,7 +57,7 @@ builder.Services.AddSwaggerGen(option =>
 
         }
     });
-});
+}); 
 
 builder.AddAppAuthentication();
 builder.Services.AddAuthorization();
@@ -79,11 +90,13 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast"); */
+app.UseCors("AllowReactApp");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 ApplyMigration();
+
 
 app.Run();
 

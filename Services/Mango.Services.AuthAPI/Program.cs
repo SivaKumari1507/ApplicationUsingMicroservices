@@ -24,6 +24,15 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
@@ -40,6 +49,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 ApplyMigration();
+app.UseCors("AllowAll");
 
 // var summaries = new[]
 // {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Mango.Services.AuthAPI.Services
 {
-    public class AuthService : IAuthService
+    public class AuthService : IAuthService 
     {
         private readonly AppDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
