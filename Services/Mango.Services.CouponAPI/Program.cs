@@ -2,12 +2,9 @@ using Mango.Services.CouponAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Mango.Services.CouponAPI;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Mango.Services.CouponAPI.Extensions;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();

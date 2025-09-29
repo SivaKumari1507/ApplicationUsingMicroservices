@@ -3777,11 +3777,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\Services\\Mango.Services.CouponAPI\\Mango.Services.CouponAPI.csproj",
+      "projectUniqueName": "C:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\Services\\Mango.Services.CouponAPI\\Mango.Services.CouponAPI.csproj",
       "projectName": "Mango.Services.CouponAPI",
-      "projectPath": "c:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\Services\\Mango.Services.CouponAPI\\Mango.Services.CouponAPI.csproj",
+      "projectPath": "C:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\Services\\Mango.Services.CouponAPI\\Mango.Services.CouponAPI.csproj",
       "packagesPath": "C:\\Users\\SIJALLI\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\Services\\Mango.Services.CouponAPI\\obj\\",
+      "outputPath": "C:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\Services\\Mango.Services.CouponAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SIJALLI\\AppData\\Roaming\\NuGet\\NuGet.Config"
