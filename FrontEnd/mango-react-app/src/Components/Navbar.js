@@ -41,11 +41,14 @@ function Navbar() {
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                     > Content Management
+                > Content Management
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
                     <Link className="dropdown-item" to="/coupons">Coupon</Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/products">Product</Link>
                   </li>
 
                   <li><hr className="dropdown-divider" /></li>
@@ -69,7 +72,7 @@ function Navbar() {
                     <span className="nav-link">Hello {user.name}</span>
                   </li>
                   <li className="nav-item">
-                  <button className="nav-link btn btn-link" onClick={handleLogout}>Logout</button>
+                    <button className="nav-link btn btn-link" onClick={handleLogout}>Logout</button>
                   </li>
                 </>
               )}
