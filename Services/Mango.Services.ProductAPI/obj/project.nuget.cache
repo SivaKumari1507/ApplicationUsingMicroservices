@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "o+O6u4cBV3I=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\Services\\Mango.Services.ProductAPI\\Mango.Services.ProductAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SIJALLI\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.9\\microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
+    "C:\\Users\\SIJALLI\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

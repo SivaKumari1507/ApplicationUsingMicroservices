@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Mango.Web.Models;
 using Mango.Web.Service.IService;
-using System.Net.Http;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using System.Text;
 using Mango.Web.Utility;
@@ -16,11 +10,13 @@ namespace Mango.Web.Service
     public class BaseService : IBaseService
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public BaseService(IHttpClientFactory httpClientFactory)
+        private readonly ITokenProvider _tokenProvider;
+        public BaseService(IHttpClientFactory httpClientFactory, ITokenProvider tokenProvider)
         {
             _httpClientFactory = httpClientFactory;
+            _tokenProvider = tokenProvider;
         }
-        public async Task<ResponseDto?> SendAsync<T>(RequestDto requestDto)
+        public async Task<ResponseDto?> SendAsync(RequestDto requestDto,bool withBearer= true)
         {
             try
             {
@@ -28,7 +24,11 @@ namespace Mango.Web.Service
                 HttpRequestMessage message = new();
                 message.Headers.Add("Accept", "application/json");
                 // token
-
+                if (withBearer)
+                {
+                    var token = _tokenProvider.GetToken();
+                    message.Headers.Add("Authorization", $"Bearer {token}");
+                }
                 message.RequestUri = new Uri(requestDto.Url);
                 if (requestDto.Data != null)
                 {
@@ -60,7 +60,7 @@ namespace Mango.Web.Service
                     case HttpStatusCode.NotFound:
                         return new() { IsSuccess = false, Message = "Not Found" };
                     case HttpStatusCode.Forbidden:
-                        return new() { IsSuccess = false, Message = "Forbidden" };
+                        return new() { IsSuccess = false, Message = "Access Denied" };
                     case HttpStatusCode.Unauthorized:
                         return new() { IsSuccess = false, Message = "Unauthorized" };
                     case HttpStatusCode.InternalServerError:
@@ -82,8 +82,6 @@ namespace Mango.Web.Service
             }
 
         }
-
-
 
 
     }
