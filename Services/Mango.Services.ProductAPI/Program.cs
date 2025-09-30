@@ -3,8 +3,8 @@ using AutoMapper;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Mango.Services.ProductAPI.Data;
-using Mango.Services.ProductAPI;
 using Mango.Services.ProductAPI.Extensions;
+using Mango.Services.ProductAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -16,7 +16,7 @@ IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddEyndpointsApiExplorer();
+builder.Services.AddEndpointsApiExplorer();
 
 // Add CORS
 builder.Services.AddCors(options =>
