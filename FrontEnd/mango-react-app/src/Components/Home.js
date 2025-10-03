@@ -1,10 +1,27 @@
-function Home() {
+import React, { useEffect, useState } from 'react';
+import ProductCard from '../Components/ProductCard';
+import axios from 'axios';
+
+
+const HomePage = () => {
+  const [products, setProducts] = useState([]);
+
+ useEffect(() => {
+  axios.get('http://localhost:5016/api/product')
+    .then(response => setProducts(response.data.result))
+    .catch(error => console.error('Error fetching products:', error));
+}, []);
+
   return (
-    <div className="text-center mt-5">
-      <h2>Welcome to Mango.ReactApp</h2>
-      <p>Click on the Coupons in the Coupon Management in the navbar to view available coupons.</p>
+    <div className="container mt-4">
+      <h2 className="text-center mb-4 text-primary">Welcome to Mango Footwear</h2>
+      <div className="row">
+        {products.map(product => (
+          <ProductCard key={product.productId} {...product} />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
-export default Home;
+export default HomePage;

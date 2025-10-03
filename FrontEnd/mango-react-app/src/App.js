@@ -5,13 +5,20 @@ import Footer from './Components/Footer';
 import Home from './Components/Home';
 import CouponList from './Components/CouponList';
 import AddCouponForm from './Components/AddCouponForm';
-import Login from './Components/Login'; 
-import Register from './Components/Register'; 
+import ProductList from './Components/ProductList';
+import AddProductForm from './Components/AddProductForm';
+import EditProductForm from './Components/EditProductForm';
+import ProductDetails from './Components/ProductDetails'
+import Login from './Components/Login';
+import Register from './Components/Register';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+
+
+
 
 function App() {
   return (
@@ -22,9 +29,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} /> 
+            <Route path="/Home" element={<Home />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/coupons" element={<CouponList />} />
             <Route path="/add-coupon" element={<AddCouponForm />} />
+            <Route path="/products" element={<ProductList />} />
+            <Route path="/products/add" element={<AddProductForm />} />
+            <Route path="/products/edit/:id" element={<EditProductForm />} />
+            <Route path="/" element={<ProductList />} />
+            <Route path="/products/:productId" element={<ProductDetails />} />
           </Routes>
         </main>
         <Footer />

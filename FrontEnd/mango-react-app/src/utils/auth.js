@@ -1,16 +1,16 @@
 export const setToken = (token) => {
-  const user = JSON.parse(localStorage.getItem('user')) || {};
+  const user = JSON.parse(sessionStorage.getItem('user')) || {};
   user.token = token;
-  localStorage.setItem('user', JSON.stringify(user));
+  sessionStorage.setItem('user', JSON.stringify(user));
 };
 
 export const getToken = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(sessionStorage.getItem('user'));
   return user?.token || null;
 };
 
 export const removeToken = () => {
-  localStorage.removeItem('user');
+  sessionStorage.removeItem('user');
 };
 
 export const getAuthHeader = () => {
@@ -19,6 +19,7 @@ export const getAuthHeader = () => {
     ? {
         headers: {
           Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
         },
       }
     : {};

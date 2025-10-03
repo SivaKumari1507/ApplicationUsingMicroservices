@@ -44,7 +44,7 @@ const Login = () => {
         });
 
         toast.success('Login successful!');
-        navigate('/coupons');
+        navigate('/Home');
       } else {
         toast.error('Login failed: No token received.');
       }
