@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+/* import React, { useEffect, useState } from 'react';
 import ProductCard from '../Components/ProductCard';
 import axios from 'axios';
 
@@ -20,6 +20,49 @@ const HomePage = () => {
           <ProductCard key={product.productId} {...product} />
         ))}
       </div>
+    </div>
+  );
+};
+
+export default HomePage; */
+
+import React, { useEffect, useState } from 'react';
+import ProductCard from '../Components/ProductCard';
+import ProductDetailsModal from '../Components/ProductDetails';
+import axios from 'axios';
+
+const HomePage = () => {
+  const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    axios.get('http://localhost:5016/api/product')
+      .then(response => setProducts(response.data.result))
+      .catch(error => console.error('Error fetching products:', error));
+  }, []);
+
+  const handleDetailsClick = (product) => {
+    setSelectedProduct(product);
+    setShowModal(true);
+  };
+
+  return (
+    <div className="container mt-4">
+      <h2 className="text-center mb-4 text-primary">Welcome to Mango Footwear</h2>
+      <div className="row">
+        {products.map(product => (
+          <ProductCard key={product.productId} product={product} onDetailsClick={handleDetailsClick} />
+        ))}
+      </div>
+
+      {selectedProduct && (
+        <ProductDetailsModal
+          show={showModal}
+          onHide={() => setShowModal(false)}
+          product={selectedProduct}
+        />
+      )}
     </div>
   );
 };
