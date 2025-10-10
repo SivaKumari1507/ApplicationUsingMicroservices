@@ -1,15 +1,20 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 import './Navbar.css';
+import { FaShoppingCart } from 'react-icons/fa';
 
-function Navbar() {
+
+function Navbar({ cartCount }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
+  
+
+const handleLogout = () => {
+  logout();
+  // setCartCount(0); // ✅ Reset cart count
+  navigate('/login');
+};
 
   return (
     <header>
@@ -56,7 +61,19 @@ function Navbar() {
               </li>
             </ul>
 
+
             <ul className="navbar-nav">
+             {/*  <li className="nav-item">
+                <Link className="nav-link position-relative" to="/cart">
+                  <FaShoppingCart />
+                  {cartCount > 0 && (
+                    <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                      {cartCount}
+                    </span>
+                  )}
+                </Link>
+              </li> */}
+
               {!user ? (
                 <>
                   <li className="nav-item">
@@ -68,7 +85,17 @@ function Navbar() {
                 </>
               ) : (
                 <>
-                  <li className="nav-item">
+                   <li className="nav-item">
+                <Link className="nav-link position-relative" to="/cart">
+                  <FaShoppingCart />
+                  {cartCount > 0 && (
+                    <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                      {cartCount}
+                    </span>
+                  )}
+                </Link>
+              </li>
+                  <li className="nav-item">{/*  */}
                     <span className="nav-link">Hello {user.name}</span>
                   </li>
                   <li className="nav-item">

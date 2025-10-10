@@ -11,16 +11,17 @@ export const getToken = () => {
 
 export const removeToken = () => {
   sessionStorage.removeItem('user');
+  // sessionStorage.removeItem('token');
 };
 
 export const getAuthHeader = () => {
   const token = getToken();
   return token
     ? {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-      }
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+    }
     : {};
 };

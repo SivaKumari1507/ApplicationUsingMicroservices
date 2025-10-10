@@ -43,7 +43,7 @@ const Login = () => {
           token: loginResponse.token
         });
 
-        toast.success('Login successful!');
+        // toast.success('Login successful!');
         navigate('/Home');
       } else {
         toast.error('Login failed: No token received.');
