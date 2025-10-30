@@ -1,13 +1,8 @@
-
-import React, { useEffect, useState } from 'react';
-import {
-  getCart,
-  applyCoupon,
-  removeCartItem,
-  updateCartItem,
-} from '../services/cartService';
+import React, { useEffect, useState, useCallback } from 'react';
+import { getCart, applyCoupon, removeCartItem, updateCartItem } from '../services/cartService';
 import CartItem from './CartItem';
 import { useAuth } from '../Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const CartPage = ({ setCartCount }) => {
   const [cart, setCart] = useState(null);
@@ -15,10 +10,11 @@ const CartPage = ({ setCartCount }) => {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const userId = user?.userId || user?.id || user?.email;
 
-  const fetchCart = async () => {
+  const fetchCart = useCallback(async () => {
     if (!userId) return;
 
     setLoading(true);
@@ -32,11 +28,11 @@ const CartPage = ({ setCartCount }) => {
       setMessage('Failed to load cart.');
     }
     setLoading(false);
-  };
+  }, [userId, setCartCount]);
 
   useEffect(() => {
     fetchCart();
-  }, [userId]);
+  }, [fetchCart]);
 
   const handleApplyCoupon = async () => {
     setLoading(true);
@@ -77,6 +73,10 @@ const CartPage = ({ setCartCount }) => {
     await fetchCart();
   };
 
+  const goToOrderSummary = () => {
+    navigate('/order-summary', { state: { cart } });
+  };
+
   if (loading)
     return (
       <div className="text-center mt-5">
@@ -87,9 +87,12 @@ const CartPage = ({ setCartCount }) => {
   if (!cart || cart.cartDetails.length === 0)
     return <h1 className="text-center mt-5">Your cart is empty.</h1>;
 
+  const subtotal = cart.cartHeader.cartTotal + cart.cartHeader.discount;
+  const savings = cart.cartHeader.discount;
+
   return (
     <div className="container py-4">
-      <h2 className="mb-4">Shopping Cart</h2>
+      <h2 className="mb-4 text-primary">Shopping Cart</h2>
       <div className="row g-4">
         {cart.cartDetails.map((item) => (
           <div className="col-md-6 col-lg-4" key={item.cartDetailsId}>
@@ -99,34 +102,53 @@ const CartPage = ({ setCartCount }) => {
       </div>
 
       <div className="mt-5 p-4 bg-light rounded shadow-sm">
-        <h4>Order Summary</h4>
-        <p>Subtotal: ₹{cart.cartHeader.cartTotal + cart.cartHeader.discount}</p>
-        <p>Discount: ₹{cart.cartHeader.discount}</p>
-        <p>
-          <strong>Order Total: ₹{cart.cartHeader.cartTotal}</strong>
-        </p>
-
-        <div className="input-group mt-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter coupon code"
-            value={couponCode}
-            onChange={(e) => setCouponCode(e.target.value)}
-            disabled={!!cart.cartHeader.couponCode}
-          />
-          {cart.cartHeader.couponCode ? (
-            <button className="btn btn-danger" onClick={handleRemoveCoupon}>
-              Remove Coupon
-            </button>
-          ) : (
-            <button className="btn btn-success" onClick={handleApplyCoupon}>
-              Apply Coupon
-            </button>
-          )}
+        <h5 className="text-dark mb-3">Price Details</h5>
+        <div className="d-flex justify-content-between">
+          <span>Subtotal:</span>
+          <span className="text-muted">₹{subtotal}</span>
+        </div>
+        <div className="d-flex justify-content-between">
+          <span>Discount:</span>
+          <span className="text-success">– ₹{savings}</span>
+        </div>
+        <hr />
+        <div className="d-flex justify-content-between">
+          <strong>Total:</strong>
+          <strong className="text-primary">₹{cart.cartHeader.cartTotal}</strong>
+        </div>
+        <div className="d-flex justify-content-between mt-2">
+          <span className="text-muted">You Save:</span>
+          <span className="text-success">₹{savings}</span>
         </div>
 
-        {message && <p className="mt-2 text-info">{message}</p>}
+        <div className="mt-4">
+          <div className="input-group w-50">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter coupon code"
+              value={couponCode}
+              onChange={(e) => setCouponCode(e.target.value)}
+              disabled={!!cart.cartHeader.couponCode}
+            />
+            {cart.cartHeader.couponCode ? (
+              <button className="btn btn-danger" onClick={handleRemoveCoupon}>
+                Remove
+              </button>
+            ) : (
+              <button className="btn btn-success" onClick={handleApplyCoupon}>
+                Apply
+              </button>
+            )}
+          </div>
+          {message && <p className="mt-2 text-info small">{message}</p>}
+        </div>
+
+        <div className="d-flex justify-content-end">
+          <button className="btn btn-primary mt-4" onClick={goToOrderSummary}>
+            Go to Order Summary
+          </button>
+        </div>
       </div>
     </div>
   );

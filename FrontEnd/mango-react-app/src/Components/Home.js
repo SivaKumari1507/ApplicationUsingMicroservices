@@ -49,7 +49,7 @@ const HomePage = () => {
 
   return (
     <div className="container mt-4">
-      <h2 className="text-center mb-4 text-primary">Welcome to Mango Footwear</h2>
+      <h2 className="text-center text-primary">Welcome to Mango Footwear</h2>
       <div className="row">
         {products.map(product => (
           <ProductCard key={product.productId} product={product} onDetailsClick={handleDetailsClick} />

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
@@ -20,6 +19,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import { useAuth } from './Context/AuthContext';
 import { getCart } from './services/cartService';
+import OrderSummary from './Components/OrderSummary';
+import OrderSuccess from './Components/OrderSuccess';
+
 
 const App = () => {
   const { user } = useAuth();
@@ -39,7 +41,7 @@ const App = () => {
     };
 
     fetchCartCount();
-  }, [user]); // Runs whenever user logs in
+  }, [user]); 
 
   return (
     <Router>
@@ -57,6 +59,8 @@ const App = () => {
             <Route path="/products/add" element={<AddProductForm />} />
             <Route path="/products/edit/:id" element={<EditProductForm />} />
             <Route path="/products/:productId" element={<ProductDetails />} />
+            <Route path="/order-summary" element={<OrderSummary />} />
+            <Route path="/order-success" element={<OrderSuccess />} />
             <Route
               path="/cart"
               element={<CartPage setCartCount={setCartCount} />}

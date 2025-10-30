@@ -1,19 +1,21 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import {jwtDecode} from 'jwt-decode';
-
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
-  const login = (userData, token) => {
+  const login = (userData, tokenValue) => {
     setUser(userData);
+    setToken(tokenValue);
     sessionStorage.setItem('user', JSON.stringify(userData));
-    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('token', tokenValue);
   };
 
   const logout = () => {
     setUser(null);
+    setToken(null);
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('cartCount');
@@ -29,54 +31,27 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const storedUser = sessionStorage.getItem('user');
-    const token = sessionStorage.getItem('token');
+    const storedToken = sessionStorage.getItem('token');
 
-    if (storedUser && token && !isTokenExpired(token)) {
-      setUser(JSON.parse(storedUser));
+    if (storedToken && !isTokenExpired(storedToken)) {
+      const decoded = jwtDecode(storedToken);
+      const restoredUser = {
+        name: decoded.name,
+        email: decoded.email,
+        role: decoded.role,
+      };
+      setUser(restoredUser);
+      setToken(storedToken);
     } else {
-      logout(); 
+      logout();
     }
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
-
-export default AuthContext; 
-
-
-/* import React, { createContext, useContext, useState } from 'react';
-
-const AuthContext = createContext();
-
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(() => {
-    const storedUser = sessionStorage.getItem('user');
-    return storedUser ? JSON.parse(storedUser) : null;
-  });
-
-  const login = (userData) => {
-    setUser(userData);
-    sessionStorage.setItem('user', JSON.stringify(userData));
-  };
-
-  const logout = () => {
-    setUser(null);
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('token'); // Optional: if token is stored separately
-  };
-
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-export const useAuth = () => useContext(AuthContext);  */
+export const useAuth = () => React.useContext(AuthContext);

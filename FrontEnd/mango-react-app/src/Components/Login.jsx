@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/authService';
 import { toast } from 'react-toastify';
 import { useAuth } from '../Context/AuthContext';
+
 
 const Login = () => {
   const [form, setForm] = useState({ userName: '', password: '' });
@@ -53,7 +54,68 @@ const Login = () => {
     } finally {
       setLoading(false);
     }
+  }; */
+
+
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../services/authService';
+import { toast } from 'react-toastify';
+import { useAuth } from '../Context/AuthContext';
+import { jwtDecode } from 'jwt-decode';
+
+const Login = () => {
+  const [form, setForm] = useState({ userName: '', password: '' });
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
+  const validate = () => {
+    const newErrors = {};
+    if (!form.userName.trim()) newErrors.userName = 'Username is required.';
+    if (!form.password.trim()) newErrors.password = 'Password is required.';
+    return newErrors;
   };
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await loginUser(form);
+      const loginResponse = response.data.result;
+
+      if (loginResponse?.token) {
+        const decoded = jwtDecode(loginResponse.token);
+
+        login({
+          name: decoded.name,
+          email: decoded.email,
+          role: decoded.role, // ✅ Extracted from token
+          token: loginResponse.token
+        });
+
+        navigate('/Home');
+      } else {
+        toast.error('Login failed: No token received.');
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Login failed.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   return (
     // <div className="container mt-0">

@@ -400,11 +400,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\FrontEnd\\Mango.Web\\Mango.Web.csproj",
+      "projectUniqueName": "c:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\FrontEnd\\Mango.Web\\Mango.Web.csproj",
       "projectName": "Mango.Web",
-      "projectPath": "C:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\FrontEnd\\Mango.Web\\Mango.Web.csproj",
+      "projectPath": "c:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\FrontEnd\\Mango.Web\\Mango.Web.csproj",
       "packagesPath": "C:\\Users\\SIJALLI\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\FrontEnd\\Mango.Web\\obj\\",
+      "outputPath": "c:\\Users\\SIJALLI\\OneDrive - Capgemini\\Desktop\\MicroservicesApp\\FrontEnd\\Mango.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SIJALLI\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -465,7 +465,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.110/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.111/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

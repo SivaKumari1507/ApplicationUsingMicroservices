@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { getCoupons, deleteCoupon } from '../api/couponApi';
 import { useNavigate } from 'react-router-dom';
 import './CouponList.css';
 import { toast } from 'react-toastify';
+import { useAuth } from '../Context/AuthContext';
 
 function CouponList() {
   const [coupons, setCoupons] = useState([]);
   const navigate = useNavigate();
+  const {user}=useAuth();
 
   useEffect(() => {
     getCoupons()
@@ -15,6 +17,10 @@ function CouponList() {
   }, []);
 
   const handleDelete = (id) => {
+    if(user?.role!=='ADMIN'){
+           toast.error('Only Admin can create coupons');
+           return;
+         }
   if (window.confirm('Are you sure you want to delete this coupon?')) {
     deleteCoupon(id)
       .then(() => {
@@ -30,7 +36,11 @@ function CouponList() {
 
 
  const goToCreatePage = () => {
-  navigate('/add-coupon'); // ✅ Match the route in App.js
+  if(user?.role!=='ADMIN'){
+    toast.error('Only Admin can create coupons');
+    return;
+  }
+  navigate('/add-coupon'); 
 };
 
 

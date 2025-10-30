@@ -19,3 +19,6 @@ export const removeCartItem = async (cartDetailsId) => {
 export const updateCartItem = async (cartDto) => {
   return await axios.post('http://localhost:5017/api/cart/CartUpsert', cartDto);
 };
+// export const clearCart = async (userId) => {
+//   return await axios.post(`/api/cart/clear/${userId}`);
+// };

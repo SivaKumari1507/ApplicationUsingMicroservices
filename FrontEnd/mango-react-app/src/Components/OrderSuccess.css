@@ -1,0 +1,37 @@
+.success-page {
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeIn 1s ease-in;
+}
+
+.success-animation {
+    margin-bottom: 30px;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: #28a745;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: popIn 0.6s ease-out;
+}
+
+.checkmark {
+    font-size: 60px;
+    color: white;
+    font-weight: bold;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

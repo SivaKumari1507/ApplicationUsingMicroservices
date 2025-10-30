@@ -1,5 +1,5 @@
 const ProductCard = ({ product, onDetailsClick }) => {
-  const { productId, name, price, description, categoryName, imageUrl } = product;
+  const {  name, price, description, categoryName, imageUrl } = product;
 
   return (
     <div className="col-md-4 col-sm-6 mb-4">

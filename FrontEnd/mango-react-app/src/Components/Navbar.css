@@ -29,8 +29,8 @@
 }
 
 
+
 .footer {
-  /* position: absolute; */
   bottom: 0;
   width: 100%;
   white-space: nowrap;
@@ -38,6 +38,15 @@
   background-color: #e0dde1b7;;
   color: rgb(28, 24, 24);
   
+}
+
+.custom-navbar {
+  background-color: rgba(16, 46, 86, 0.96);
+}
+
+.custom-navbar .nav-link,
+.custom-navbar .navbar-brand {
+  color: rgba(252, 253, 255, 0.96) !important;
 }
 
 
